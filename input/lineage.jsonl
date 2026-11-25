@@ -158,5 +158,5 @@
 {"id": "X234", "output": "B114", "source": "M079", "share": 0.2, "as_of": "2027-06-06T08:00:00+08:00", "type": "投料", "ref": null}
 {"id": "X237", "output": "B117", "source": "M080", "share": 0.2, "as_of": "2027-06-07T08:00:00+08:00", "type": "投料", "ref": null}
 {"id": "X240", "output": "B120", "source": "M081", "share": 0.2, "as_of": "2027-06-08T08:00:00+08:00", "type": "投料", "ref": null}
-{"id": "X161", "output": "B093", "source": "M031", "share": 0.8, "as_of": "2027-06-28T09:00:00+08:00", "type": "撤销", "ref": "X093"}
-{"id": "X162", "output": "B093", "source": "M032", "share": 0.8, "as_of": "2027-06-28T09:00:00+08:00", "type": "投料", "ref": "X161"}
+{"id": "REV1", "output": "B093", "source": "M031", "share": 0.8, "as_of": "2027-06-28T09:00:00+08:00", "type": "撤销", "ref": "X093"}
+{"id": "REV2", "output": "B093", "source": "M032", "share": 0.8, "as_of": "2027-06-28T09:00:00+08:00", "type": "投料", "ref": "REV1"}
