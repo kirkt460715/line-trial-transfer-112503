@@ -1,0 +1,115 @@
+{
+  "format": "jsonl",
+  "version": 1,
+  "tables": {
+    "batches": {
+      "summary": "入料和各工厂的生成批，含盲复测目标时段",
+      "columns": {
+        "id": "产线批",
+        "line": "设备与产线",
+        "shift": "操作班次",
+        "grade": "品级",
+        "size": "批量",
+        "made": "投产时点",
+        "mode": "正常或试用"
+      },
+      "key": [
+        "id"
+      ],
+      "refs": {}
+    },
+    "lineage": {
+      "summary": "原料批向多个产线批投料的凭证与后续更正",
+      "columns": {
+        "id": "谱系记录",
+        "output": "出品批",
+        "source": "投用原料批",
+        "share": "重量占比",
+        "as_of": "凭证获知时点",
+        "type": "投料或撤销",
+        "ref": "更正指向的凭证，可空"
+      },
+      "key": [
+        "id"
+      ],
+      "refs": {
+        "output": "batches.id"
+      }
+    },
+    "tests": {
+      "summary": "实际判定、盲复测和疑件复检记录",
+      "columns": {
+        "id": "复测记录",
+        "batch": "出品批",
+        "item": "样件号",
+        "stage": "盲复测、疑件复检或未复检",
+        "include_probability": "当期盲抽的纳入概率",
+        "line_defect": "产线当时标记缺陷",
+        "lab_defect": "复测室测定结果，可空",
+        "definition": "测量口径版本",
+        "at": "证据到达时间",
+        "raw_lab": "复测测量值，可空，量纲按 definition"
+      },
+      "key": [
+        "id"
+      ],
+      "refs": {
+        "batch": "batches.id"
+      }
+    },
+    "meters": {
+      "summary": "设备维护和两套口径之间的原始复测桥接证据",
+      "columns": {
+        "id": "凭证",
+        "line": "测量仪器所属产线",
+        "from_day": "事实范围起日",
+        "to_day": "事实范围末日",
+        "known_at": "质量检验组获知时间",
+        "kind": "维护、漂移或有配对桥接",
+        "old": "旧口径读数，可空",
+        "new": "新口径读数，可空"
+      },
+      "key": [
+        "id"
+      ],
+      "refs": {}
+    },
+    "release": {
+      "summary": "客户约定和批次物流状态",
+      "columns": {
+        "id": "批件记录",
+        "batch": "关联出品批",
+        "client": "客户",
+        "need_mode": "接受的质量方式",
+        "fallback": "允许旧方式替代",
+        "deadline": "承诺可发截止",
+        "state": "已发或未发",
+        "at": "确定或变更时点"
+      },
+      "key": [
+        "id"
+      ],
+      "refs": {
+        "batch": "batches.id"
+      }
+    },
+    "policy": {
+      "summary": "启用范围、目标和复测资源",
+      "columns": {
+        "id": "决策条件",
+        "grade": "品级",
+        "scope": "拟启用仪器",
+        "shift": "适用班次",
+        "leak_reduction": "最少漏判改善比例点",
+        "false_alarm_ceiling": "误拦截比例上限",
+        "slots": "同周尚可该品级的复测个数",
+        "ref_definition": "客户接受的判定口径",
+        "defect_limit": "该口径超过此测量值视为缺陷"
+      },
+      "key": [
+        "id"
+      ],
+      "refs": {}
+    }
+  }
+}
